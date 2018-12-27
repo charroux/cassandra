@@ -12,9 +12,11 @@ docker-compose up --build
 
 build is used to force the creation of a new image for the rest web service.
 
+Test the rest web service in a web browser: http://localhost:8080/
+
 ## Alternative to Docker compose
 
-Starting cassandra:
+Starting of cassandra (retreiving the Cassandra image from Docker hub) :
 
 docker run --name my-cassandra -p 9042:9042 cassandra:3.0
 
@@ -22,7 +24,7 @@ Build the rest web service:
 
 gradlew build   or  ./gradlew build (on Linux)
 
-Create the Docker image:
+Create the Docker image (cqrs as the image name):
 
 docker build -t cqrs .
 
@@ -35,6 +37,7 @@ docker run --name boots --link my-cassandra:db -p 8080:8080 cqrs
 ## If needed (stopping and removing the containers):
 
 docker container rm containerID
+
 docker container stop containerID
 
 ## The code
@@ -51,7 +54,10 @@ A retry pattern is used to retry a connection after a delay of 10 secondes (wait
  
 Rest web service parameters: https://github.com/charroux/cassandra/blob/master/src/main/resources/application.properties:
 
-spring.cassandra.host is used in: https://github.com/charroux/cassandra/blob/master/docker-compose.yml
+spring.cassandra.host is set in: https://github.com/charroux/cassandra/blob/master/docker-compose.yml
+
+and used in: https://github.com/charroux/cassandra/blob/master/src/main/java/com/example/Cassandra/RestWebService.java
+
 
 
 
