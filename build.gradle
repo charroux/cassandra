@@ -1,0 +1,36 @@
+buildscript {
+	ext {
+		springBootVersion = '2.1.1.RELEASE'
+	}
+	repositories {
+		mavenCentral()
+	}
+	dependencies {
+		classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
+	}
+}
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'io.spring.dependency-management'
+
+group = 'com.example'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = 1.8
+
+repositories {
+	mavenCentral()
+}
+
+
+dependencies {
+	implementation('org.springframework.boot:spring-boot-starter-web')
+	implementation('org.springframework.boot:spring-boot-starter-data-cassandra')
+	compile('com.datastax.cassandra:cassandra-driver-core:3.0.0')
+	compile('com.codahale.metrics:metrics-core:3.0.2')
+	compile('org.springframework.retry:spring-retry:1.1.5.RELEASE')
+	compile('org.aspectj:aspectjweaver:1.8.9')
+	testImplementation('org.springframework.boot:spring-boot-starter-test')
+}

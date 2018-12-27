@@ -1,0 +1,15 @@
+version: '3'
+services:
+
+  my-cassandra:
+    image: cassandra:3.0
+    ports:
+      - "9042:9042"
+
+  rest-web-service:
+    build: .
+    ports:
+      - 8080:8080
+    links:
+      - "my-cassandra:db"
+
